@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Button, Text, Dimensions, AppRegistry, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
+import { Alert, View, Button, Text, Dimensions, AppRegistry, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import EventCalendar from '../src/EventCalendar';
 import RNPickerSelect from 'react-native-picker-select';
@@ -14,14 +14,14 @@ export default class CalendarEvents extends React.Component {
     this.state = {
       events: [
         {
-          start: '2022-04-12 13:30:00',
-          end: '2022-04-12 14:45:00',
+          start: '2022-04-13 13:30:00',
+          end: '2022-04-13 14:45:00',
           title: 'Dr. Mariana Joseph',
           summary: '3412 Piedmont Rd NE, GA 3032',
         },
         {
-          start: '2022-04-12 12:10:00',
-          end: '2022-04-12 13:45:00',
+          start: '2022-04-13 12:10:00',
+          end: '2022-04-13 13:45:00',
           title: 'Dr. Mariana Joseph',
           summary: '3412 Piedmont Rd NE, GA 3032',
         },
@@ -43,18 +43,31 @@ export default class CalendarEvents extends React.Component {
 
   //Esta função manipula a informação que é mostra no Alert
   _eventTapped(event) {
-    this.showAlert();
-    // alert(JSON.stringify(event.start + '\n' + event.end + '\n' + event.title + '\n' + event.summary));
+    // this.showAlert();
+    // console.log("Início: " + event.start + '\n' + "Fim: " + event.end + '\n' + "Título: " + event.title + '\n' + "Sumário: " + event.summary)
+    Alert.alert(
+      'Tarefa',
+      "Início: " + event.start + '\n' + "Fim: " + event.end + '\n' + "Título: " + event.title + '\n' + "Sumário: " + event.summary,
+      [
+        // {
+        //   text: 'Cancel',
+        //   onPress: () => console.log('Cancel Pressed'),
+        //   style: 'cancel',
+        // },
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ]
+    );
+    //alert("Início: " + event.start + '\n' + "Fim: " + event.end + '\n' + "Título: " + event.title + '\n' + "Sumário: " + event.summary);
   }
   render() {
-    const {showAlert} = this.state;
+    const { showAlert } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <AwesomeAlert
           show={showAlert}
           showProgress={false}
           title="AwesomeAlert"
-          message= "Test"
+          message=""
           closeOnTouchOutside={true}
           closeOnHardwareBackPress={false}
           showCancelButton={false}
@@ -76,7 +89,7 @@ export default class CalendarEvents extends React.Component {
             { label: 'Baseball', value: 'baseball' },
             { label: 'Hockey', value: 'hockey' },
           ]}
-          placeholder={{label: 'Selecionar colaborador', value: null}}
+          placeholder={{ label: 'Selecionar colaborador', value: null }}
         />
         <EventCalendar
           eventTapped={this._eventTapped.bind(this)}

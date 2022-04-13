@@ -24,7 +24,19 @@ function Test()
 {
     return(
         <NavigationContainer independent={true}>
-            <Drawer.Navigator initialRouteName="Home">
+            <Drawer.Navigator initialRouteName="Home"
+            screenOptions={{
+                headerShown: true,
+                drawerActiveBackgroundColor: '#ff8c8c',
+                drawerActiveTintColor: '#ff0000',
+                drawerInactiveTintColor: '#000000',
+                drawerStyle: {
+                    backgroundColor: '#fff',
+                  },
+              }}
+            >
+            
+                
                 <Drawer.Screen name="Home" component={Home} />
                 <Drawer.Screen name="Profile" component={Profile} />
                 <Drawer.Screen name="Calendar" component={Calendar} />

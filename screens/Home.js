@@ -1,82 +1,25 @@
-import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import * as React from 'react';
+import { Modal, Portal, Text, Button, Provider, Alert } from 'react-native-paper';
 
-import AwesomeAlert from 'react-native-awesome-alerts';
+const MyComponent = () => {
+  const [visible, setVisible] = React.useState(false);
 
-export default class App extends React.Component {
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = {backgroundColor: 'white', padding: 20};
 
-  constructor(props) {
-    super(props);
-    this.state = { showAlert: false };
-  };
-
-  showAlert = () => {
-    this.setState({
-      showAlert: true
-    });
-  };
-
-  hideAlert = () => {
-    this.setState({
-      showAlert: false
-    });
-  };
-
-  render() {
-    const {showAlert} = this.state;
-
-    return (
-      <View style={styles.container}>
-
-        <Text>I'm AwesomeAlert</Text>
-        <TouchableOpacity onPress={() => {
-          this.showAlert();
-        }}>
-          <View style={styles.button}>
-            <Text style={styles.text}>Try me!</Text>
-          </View>
-        </TouchableOpacity>
-
-        <AwesomeAlert
-          show={showAlert}
-          showProgress={false}
-          title="AwesomeAlert"
-          message="I have a message for you!"
-          closeOnTouchOutside={true}
-          closeOnHardwareBackPress={false}
-          showCancelButton={true}
-          showConfirmButton={true}
-          cancelText="No, cancel"
-          confirmText="Yes, delete it"
-          confirmButtonColor="#DD6B55"
-          onCancelPressed={() => {
-            this.hideAlert();
-          }}
-          onConfirmPressed={() => {
-            this.hideAlert();
-          }}
-        />
-      </View>
-    );
-  };
+  return (
+    <Provider>
+      <Portal>
+        <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+          <Text>Example Modal.  Click outside this area to dismiss.</Text>
+        </Modal>
+      </Portal>
+      <Button style={{marginTop: 30}} onPress={showModal}>
+        Show
+      </Button>
+    </Provider>
+  );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-  },
-  button: {
-    margin: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 7,
-    borderRadius: 5,
-    backgroundColor: "#AEDEF4",
-  },
-  text: {
-    color: '#fff',
-    fontSize: 15
-  }
-});
+export default MyComponent;
