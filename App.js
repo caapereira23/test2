@@ -32,7 +32,7 @@ function Test()
                 drawerInactiveTintColor: '#000000',
                 drawerStyle: {
                     backgroundColor: '#fff',
-                  },
+                  }
               }}
             >
             

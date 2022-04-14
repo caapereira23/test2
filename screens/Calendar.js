@@ -14,37 +14,24 @@ export default class CalendarEvents extends React.Component {
     this.state = {
       events: [
         {
-          start: '2022-04-13 13:30:00',
-          end: '2022-04-13 14:45:00',
+          start: '2022-04-14 13:30:00',
+          end: '2022-04-14 14:45:00',
           title: 'Dr. Mariana Joseph',
           summary: '3412 Piedmont Rd NE, GA 3032',
         },
         {
-          start: '2022-04-13 12:10:00',
-          end: '2022-04-13 13:45:00',
+          start: '2022-04-14 12:10:00',
+          end: '2022-04-14 13:45:00',
           title: 'Dr. Mariana Joseph',
           summary: '3412 Piedmont Rd NE, GA 3032',
         },
       ],
-    }, { showAlert: false };
+    };
   }
-
-  showAlert = () => {
-    this.setState({
-      showAlert: true
-    });
-  };
-
-  hideAlert = () => {
-    this.setState({
-      showAlert: false
-    });
-  };
 
   //Esta função manipula a informação que é mostra no Alert
   _eventTapped(event) {
-    // this.showAlert();
-    // console.log("Início: " + event.start + '\n' + "Fim: " + event.end + '\n' + "Título: " + event.title + '\n' + "Sumário: " + event.summary)
+    console.log("\nInício: " + event.start + '\n' + "Fim: " + event.end + '\n' + "Título: " + event.title + '\n' + "Sumário: " + event.summary)
     Alert.alert(
       'Tarefa',
       "Início: " + event.start + '\n' + "Fim: " + event.end + '\n' + "Título: " + event.title + '\n' + "Sumário: " + event.summary,
@@ -60,28 +47,8 @@ export default class CalendarEvents extends React.Component {
     //alert("Início: " + event.start + '\n' + "Fim: " + event.end + '\n' + "Título: " + event.title + '\n' + "Sumário: " + event.summary);
   }
   render() {
-    const { showAlert } = this.state;
     return (
       <View style={{ flex: 1 }}>
-        <AwesomeAlert
-          show={showAlert}
-          showProgress={false}
-          title="AwesomeAlert"
-          message=""
-          closeOnTouchOutside={true}
-          closeOnHardwareBackPress={false}
-          showCancelButton={false}
-          showConfirmButton={true}
-          cancelText="No, cancel"
-          confirmText="Ok"
-          confirmButtonColor="#00ff00"
-          onCancelPressed={() => {
-            this.hideAlert();
-          }}
-          onConfirmPressed={() => {
-            this.hideAlert();
-          }}
-        />
         <RNPickerSelect
           onValueChange={(value) => console.log(value)}
           items={[
