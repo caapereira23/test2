@@ -9,7 +9,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 
 import Home from './Home';
-import Profile from './Profile';
+import Login from './Login';
+import Signup from './Signup';
 import Calendar from './Calendar';
 
 const Drawer = createDrawerNavigator();
@@ -20,7 +21,8 @@ function Test()
         <NavigationContainer independent={true}>
             <Drawer.Navigator initialRouteName="Home">
                 <Drawer.Screen name="Home" component={Home} />
-                <Drawer.Screen name="Profile" component={Profile} />
+                <Drawer.Screen name="Login" component={Login} />
+                <Drawer.Screen name="Signup" component={Signup} />
                 <Drawer.Screen name="Calendar" component={Calendar} />
             </Drawer.Navigator>
         </NavigationContainer>

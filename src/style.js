@@ -52,7 +52,7 @@ export default function styleConstructor(theme = {}, calendarHeight) {
       position: 'absolute',
       backgroundColor: '#ff8c8c',
       opacity: 0.8,
-      borderColor: '#ff0000',
+      borderColor: '#ffff',
       color: '#000000',
       borderWidth: 2,
       borderRadius: 5,

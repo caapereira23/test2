@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Modal, Portal, Text, Button, Provider, Alert } from 'react-native-paper';
+import RNPickerSelect from 'react-native-picker-select';
 
 const MyComponent = () => {
   const [visible, setVisible] = React.useState(false);
@@ -18,7 +19,17 @@ const MyComponent = () => {
       <Button style={{marginTop: 30}} onPress={showModal}>
         Show
       </Button>
+      <RNPickerSelect
+          onValueChange={(value) => console.log(value)}
+          items={[
+            { label: 'Football', value: 'football' },
+            { label: 'Baseball', value: 'baseball' },
+            { label: 'Hockey', value: 'hockey' },
+          ]}
+          placeholder={{ label: 'Selecionar colaborador', value: null }}
+        />
     </Provider>
+    
   );
 };
 

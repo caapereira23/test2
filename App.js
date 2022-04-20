@@ -10,7 +10,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 
 import Home from './screens/Home';
-import Profile from './screens/Profile';
+import Login from './screens/Login';
+import Signup from './screens/Signup';
 import Calendar from './screens/Calendar';
 import { LogBox } from 'react-native';
 
@@ -38,8 +39,10 @@ function Test()
             
                 
                 <Drawer.Screen name="Home" component={Home} />
-                <Drawer.Screen name="Profile" component={Profile} />
                 <Drawer.Screen name="Calendar" component={Calendar} />
+
+                <Drawer.Screen name="Login" component={Login} />
+                <Drawer.Screen name="Signup" component={Signup} />
             </Drawer.Navigator>
         </NavigationContainer>
     );
