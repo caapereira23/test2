@@ -1,36 +1,60 @@
-import * as React from 'react';
-import { Modal, Portal, Text, Button, Provider, Alert } from 'react-native-paper';
-import RNPickerSelect from 'react-native-picker-select';
+// React Native Axios – To Make HTTP API call in React Native
+// https://aboutreact.com/react-native-axios/
 
-const MyComponent = () => {
-  const [visible, setVisible] = React.useState(false);
+import React from 'react';
+//import React in our code.
+import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+//import all the components we are going to use.
+import axios from 'axios';
 
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const containerStyle = {backgroundColor: 'white', padding: 20};
+const App = () => {
+  const getDataUsingSimpleGetCall = () => {
+    axios
+      // .get('https://jsonplaceholder.typicode.com/posts')
+      .get('http://localhost:8080/mx')
+      .then(function (response) {
+        // handle success
+
+        // alert(response.data[0].title);
+        // alert(JSON.stringify(response.data[0].title));
+
+        alert(JSON.stringify(response.data.recordsets[0][0]));
+      })
+      .catch(function (error) {
+        // handle error
+        alert(error.message);
+      })
+      .finally(function () {
+        // always executed
+        // alert('Finally called');
+      });
+  };
 
   return (
-    <Provider>
-      <Portal>
-        <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
-          <Text>Example Modal.  Click outside this area to dismiss.</Text>
-        </Modal>
-      </Portal>
-      <Button style={{marginTop: 30}} onPress={showModal}>
-        Show
-      </Button>
-      <RNPickerSelect
-          onValueChange={(value) => console.log(value)}
-          items={[
-            { label: 'Football', value: 'football' },
-            { label: 'Baseball', value: 'baseball' },
-            { label: 'Hockey', value: 'hockey' },
-          ]}
-          placeholder={{ label: 'Selecionar colaborador', value: null }}
-        />
-    </Provider>
-    
+    <View style={styles.container}>
+      {/*Running GET Request*/}
+      <TouchableOpacity
+        style={styles.buttonStyle}
+        onPress={getDataUsingSimpleGetCall}>
+        <Text>Simple Get Call</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
-export default MyComponent;
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    flex: 1,
+    padding: 16,
+  },
+  buttonStyle: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    width: '100%',
+    marginTop: 16,
+  },
+});
+
+export default App;
